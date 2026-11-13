@@ -1,0 +1,38 @@
+name: Extract source zip
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Unzip source and commit tree
+        run: |
+          set -e
+          unzip -o burrandbrew-source-20261113.zip -d _extracted
+          find _extracted -name .git -maxdepth 3 -exec rm -rf {} + 2>/dev/null || true
+          if [ "$(find _extracted -mindepth 1 -maxdepth 1 | wc -l)" = "1" ] && [ -d "$(find _extracted -mindepth 1 -maxdepth 1)" ]; then
+            top="$(find _extracted -mindepth 1 -maxdepth 1)"
+            shopt -s dotglob
+            mv "$top"/* ./
+            rmdir "$top"
+          else
+
+            shopt -s dotglob
+            mv _extracted/* ./
+          fi
+          rmdir _extracted
+          rm -f burrandbrew-source-20261113.zip
+          rm -f .github/workflows/extract.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git status --short | head -n 100
+          git commit -m "Add Burr & Brew source (28 pages) for GitHub Pages migration"
+          git push
