@@ -1,0 +1,50 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '~/layouts/PageLayout.astro';
+import StructuredData from '~/components/common/StructuredData.astro';
+import ArticleCard from '~/components/ArticleCard.astro';
+import { SITE } from 'astrowind:config';
+
+const entries = (await getCollection('reviews', ({ data }) => !data.draft)).sort(
+  (a, b) => +new Date(b.data.date) - +new Date(a.data.date)
+);
+
+const metadata = {
+  title: 'Gear Reviews — Coming When Earned',
+  description:
+    'Hands-on gear reviews live here once genuine testing happens. No review gets a verdict before real evaluation — never.'
+};
+
+const site = (SITE?.site || 'https://example.com').replace(/\/$/, '');
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Gear Reviews',
+  description: metadata.description,
+  url: `${site}/reviews/`,
+};
+---
+
+<Layout metadata={metadata}>
+  <StructuredData slot="head" schema={schema} />
+  <section class="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+    <p class="text-sm font-semibold uppercase tracking-widest text-primary">Reviews</p>
+    <h1 class="font-headline mt-2 text-4xl font-bold md:text-5xl">Reviews</h1>
+    <p class="mt-4 max-w-2xl text-lg text-muted">
+      No gear reviews yet — and that's deliberate. A review only gets a verdict after genuine hands-on
+      evaluation, never before. When testing happens, the results live here.
+    </p>
+    <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {entries.map((entry) => (
+        <ArticleCard
+          href={`/reviews/${entry.id.replace(/\.mdx?$/, '')}/`}
+          kicker="Review"
+          title={entry.data.title}
+          description={entry.data.description}
+          date={entry.data.date}
+          badge={entry.data.status === 'in-progress' ? 'Review in progress' : undefined}
+        />
+      ))}
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,56 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import StructuredData from '~/components/common/StructuredData.astro';
+import { SITE } from 'astrowind:config';
+
+const metadata = {
+  title: 'Affiliate Disclosure',
+  description:
+    'How Burr & Brew makes money: affiliate commissions from some of the products we review, at no extra cost to you. Our testing and verdicts are independent.',
+};
+
+const site = (SITE?.site || 'https://example.com').replace(/\/$/, '');
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Affiliate Disclosure',
+  url: `${site}/affiliate-disclosure/`,
+};
+---
+
+<Layout metadata={metadata}>
+  <Fragment slot="announcement" />
+  <StructuredData slot="head" schema={schema} />
+  <section class="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
+    <p class="text-sm font-semibold uppercase tracking-widest text-primary">Disclosure</p>
+    <h1 class="font-headline mt-2 text-4xl font-bold md:text-5xl">How this site makes money</h1>
+    <div class="prose-editorial prose prose-lg mt-8 dark:prose-invert">
+      <p>
+        Burr & Brew is reader-supported. Some of the links on this site are affiliate links: if you click
+        one and become a paying customer, the company pays us a commission. It costs you nothing extra — the
+        price you pay is the same either way.
+      </p>
+      <p>Here&rsquo;s what that does and doesn&rsquo;t change:</p>
+      <ul>
+        <li>
+          <strong>It doesn&rsquo;t buy a good review.</strong> Commissions never influence whether we recommend
+          something. We&rsquo;d rather lose a commission than recommend a product we wouldn&rsquo;t use.
+        </li>
+        <li>
+          <strong>It doesn&rsquo;t hide the bad.</strong> If a product has real downsides, they&rsquo;re in the
+          review — including the products that pay us.
+        </li>
+        <li>
+          <strong>OplyAI is mine.</strong> I run OplyAI, an AI front-desk service covered on this site. Where it
+          appears, it&rsquo;s labeled as my product. Judge that coverage the way you&rsquo;d judge any
+          founder&rsquo;s — and check it against the independent reviews here.
+        </li>
+      </ul>
+      <p>
+        This disclosure follows the FTC&rsquo;s endorsement guidelines: any page with affiliate links also carries
+        a short notice near the top. If you ever feel a recommendation was bought, tell me — I&rsquo;ll re-test
+        the product publicly.
+      </p>
+    </div>
+  </section>
+</Layout>

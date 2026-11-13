@@ -1,0 +1,142 @@
+---
+// Editorial theme for Burr & Brew: warm cream paper, espresso ink, serif headlines,
+// one confident crema-caramel accent. No gradients, no neon — coffee magazine.
+---
+
+<style is:inline>
+  :root {
+    --aw-font-sans: var(--font-inter);
+    --aw-font-serif: var(--font-newsreader);
+    --aw-font-heading: var(--font-newsreader);
+
+    /* Crema-caramel accent (solid, never gradient) */
+    --aw-color-primary: rgb(146 84 38);
+    --aw-color-secondary: rgb(110 62 28);
+    --aw-color-accent: rgb(146 84 38);
+
+    --aw-color-text-heading: rgb(43 30 22);
+    --aw-color-text-default: rgb(62 46 34);
+    --aw-color-text-muted: rgb(120 104 88);
+    --aw-color-bg-page: rgb(252 250 246);
+
+    --aw-color-bg-page-dark: rgb(24 17 12);
+
+    ::selection {
+      background-color: rgb(237 214 178);
+    }
+  }
+
+  .dark {
+    --aw-font-sans: var(--font-inter);
+    --aw-font-serif: var(--font-newsreader);
+    --aw-font-heading: var(--font-newsreader);
+
+    --aw-color-primary: rgb(214 158 96);
+    --aw-color-secondary: rgb(196 132 68);
+    --aw-color-accent: rgb(214 158 96);
+
+    --aw-color-text-heading: rgb(247 242 236);
+    --aw-color-text-default: rgb(232 224 214);
+    --aw-color-text-muted: rgb(178 160 140);
+    --aw-color-bg-page: rgb(24 17 12);
+
+    ::selection {
+      background-color: rgb(92 58 30);
+      color: rgb(255 247 237);
+    }
+  }
+
+  /* Editorial details */
+  .font-headline {
+    font-family: var(--aw-font-heading);
+    letter-spacing: -0.01em;
+  }
+
+  /* Article body: comfortable measure, generous leading */
+  .prose-editorial {
+    max-width: 42rem;
+    line-height: 1.75;
+  }
+  .prose-editorial h2 {
+    font-family: var(--aw-font-heading);
+    margin-top: 2.5rem;
+    letter-spacing: -0.015em;
+  }
+  .prose-editorial h3 {
+    letter-spacing: -0.01em;
+  }
+
+  /* Premium comparison tables: rounded hairline container, tinted head, row hover */
+  .prose-editorial table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.9rem;
+    border: 1px solid color-mix(in oklab, var(--aw-color-text-default) 12%, transparent);
+    border-radius: 0.9rem;
+    overflow: hidden;
+    margin: 2rem 0;
+    background: var(--aw-color-bg-page);
+  }
+  .prose-editorial th {
+    text-align: left;
+    padding: 0.8rem 1rem;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--aw-color-text-muted);
+    background: color-mix(in srgb, var(--aw-color-primary) 7%, transparent);
+    border-bottom: 1px solid color-mix(in oklab, var(--aw-color-text-default) 12%, transparent);
+  }
+  .prose-editorial td {
+    padding: 0.8rem 1rem;
+    vertical-align: top;
+    border-bottom: 1px solid color-mix(in oklab, var(--aw-color-text-default) 7%, transparent);
+  }
+  .prose-editorial tr:last-child td,
+  .prose-editorial tbody tr:last-child td {
+    border-bottom: none;
+  }
+  .prose-editorial tr {
+    transition: background-color 0.15s ease;
+  }
+  .prose-editorial tr:hover td {
+    background: color-mix(in srgb, var(--aw-color-primary) 4%, transparent);
+  }
+  .prose-editorial td.cell-win {
+    background: color-mix(in srgb, var(--aw-color-primary) 9%, transparent);
+    font-weight: 600;
+  }
+
+  /* Section rhythm + hairline dividers */
+  .section-band {
+    border-top: 1px solid color-mix(in oklab, var(--aw-color-text-default) 8%, transparent);
+  }
+
+  /* Hero backdrop: soft radial wash + faint grid, clearly decorative */
+  .hero-wash {
+    background:
+      radial-gradient(52rem 30rem at 78% -8%, color-mix(in srgb, var(--aw-color-primary) 10%, transparent), transparent 62%),
+      radial-gradient(36rem 24rem at 8% 108%, color-mix(in srgb, var(--aw-color-primary) 6%, transparent), transparent 60%);
+  }
+  .dark .hero-wash {
+    background:
+      radial-gradient(52rem 30rem at 78% -8%, color-mix(in srgb, var(--aw-color-primary) 16%, transparent), transparent 62%),
+      radial-gradient(36rem 24rem at 8% 108%, color-mix(in srgb, var(--aw-color-primary) 9%, transparent), transparent 60%);
+  }
+
+  /* Ink panel: deep espresso with a warm accent glow */
+  .panel-ink {
+    background-color: rgb(24 21 18);
+    background-image: radial-gradient(
+      44rem 22rem at 50% -12%,
+      color-mix(in srgb, var(--aw-color-primary) 26%, transparent),
+      transparent 66%
+    );
+    border: 1px solid rgb(255 255 255 / 8%);
+  }
+  .dark .panel-ink {
+    background-color: rgb(30 27 24);
+  }
+</style>

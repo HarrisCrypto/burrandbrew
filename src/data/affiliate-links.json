@@ -1,0 +1,157 @@
+{
+  // Affiliate link registry for the [AFFILIATE:key] token system (see src/utils/affiliate.ts).
+  // Amazon Associates tag: burrandbrew20-20 (Jason's account, approved 2026-10-16).
+  // Links point at Amazon search results so no product/price claims are ever
+  // invented — the tag still earns on whatever the visitor buys.
+  // FOR THE BUYER: replace "tag=burrandbrew20-20" with your own Associates tag
+  // in each URL below (one find-and-replace across this file) and redeploy.
+  "aeropress": {
+    "name": "an AeroPress coffee maker on Amazon",
+    "url": "https://www.amazon.com/s?k=AeroPress+coffee+maker&tag=burrandbrew20-20"
+  },
+  "espresso-grinder": {
+    "name": "an espresso-capable grinder on Amazon",
+    "url": "https://www.amazon.com/s?k=espresso+grinder&tag=burrandbrew20-20"
+  },
+  "espresso-machine": {
+    "name": "a home espresso machine on Amazon",
+    "url": "https://www.amazon.com/s?k=home+espresso+machine&tag=burrandbrew20-20"
+  },
+  "burr-grinder": {
+    "name": "a burr coffee grinder on Amazon",
+    "url": "https://www.amazon.com/s?k=burr+coffee+grinder&tag=burrandbrew20-20"
+  },
+  "manual-grinder": {
+    "name": "a manual coffee grinder on Amazon",
+    "url": "https://www.amazon.com/s?k=manual+coffee+grinder&tag=burrandbrew20-20"
+  },
+  "electric-grinder": {
+    "name": "an electric burr grinder on Amazon",
+    "url": "https://www.amazon.com/s?k=electric+burr+coffee+grinder&tag=burrandbrew20-20"
+  },
+  "french-press": {
+    "name": "a French press on Amazon",
+    "url": "https://www.amazon.com/s?k=french+press+coffee+maker&tag=burrandbrew20-20"
+  },
+  "pour-over-dripper": {
+    "name": "a pour-over dripper on Amazon",
+    "url": "https://www.amazon.com/s?k=pour+over+coffee+dripper&tag=burrandbrew20-20"
+  },
+  "moka-pot": {
+    "name": "a moka pot on Amazon",
+    "url": "https://www.amazon.com/s?k=moka+pot&tag=burrandbrew20-20"
+  },
+  "gooseneck-kettle": {
+    "name": "a gooseneck kettle on Amazon",
+    "url": "https://www.amazon.com/s?k=gooseneck+kettle&tag=burrandbrew20-20"
+  },
+  "coffee-scale": {
+    "name": "a coffee scale on Amazon",
+    "url": "https://www.amazon.com/s?k=coffee+scale&tag=burrandbrew20-20"
+  },
+  "milk-frother": {
+    "name": "a handheld milk frother on Amazon",
+    "url": "https://www.amazon.com/s?k=handheld+milk+frother&tag=burrandbrew20-20"
+  },
+  "coffee-canister": {
+    "name": "an airtight coffee canister on Amazon",
+    "url": "https://www.amazon.com/s?k=airtight+coffee+canister&tag=burrandbrew20-20"
+  },
+  "espresso-tamper": {
+    "name": "an espresso tamper on Amazon",
+    "url": "https://www.amazon.com/s?k=espresso+tamper&tag=burrandbrew20-20"
+  },
+  "wdt-tool": {
+    "name": "a WDT distribution tool on Amazon",
+    "url": "https://www.amazon.com/s?k=WDT+distribution+tool+espresso&tag=burrandbrew20-20"
+  },
+  "bottomless-portafilter": {
+    "name": "a bottomless portafilter on Amazon",
+    "url": "https://www.amazon.com/s?k=bottomless+portafilter+espresso&tag=burrandbrew20-20"
+  },
+  "milk-pitcher": {
+    "name": "a milk steaming pitcher on Amazon",
+    "url": "https://www.amazon.com/s?k=milk+steaming+pitcher+latte+art&tag=burrandbrew20-20"
+  },
+  "espresso-cups": {
+    "name": "espresso cups and saucers on Amazon",
+    "url": "https://www.amazon.com/s?k=espresso+cups+saucer+set&tag=burrandbrew20-20"
+  },
+  "chemex": {
+    "name": "a Chemex coffeemaker on Amazon",
+    "url": "https://www.amazon.com/s?k=Chemex+coffeemaker&tag=burrandbrew20-20"
+  },
+  "kalita-wave": {
+    "name": "a Kalita Wave dripper on Amazon",
+    "url": "https://www.amazon.com/s?k=Kalita+Wave+dripper&tag=burrandbrew20-20"
+  },
+  "origami-dripper": {
+    "name": "an Origami coffee dripper on Amazon",
+    "url": "https://www.amazon.com/s?k=Origami+coffee+dripper&tag=burrandbrew20-20"
+  },
+  "range-server": {
+    "name": "a pour-over coffee server on Amazon",
+    "url": "https://www.amazon.com/s?k=pour+over+coffee+server&tag=burrandbrew20-20"
+  },
+  "chemex-filters": {
+    "name": "Chemex bonded filters on Amazon",
+    "url": "https://www.amazon.com/s?k=Chemex+bonded+filters&tag=burrandbrew20-20"
+  },
+  "coffee-book": {
+    "name": "The World Atlas of Coffee on Amazon",
+    "url": "https://www.amazon.com/s?k=World+Atlas+of+Coffee+Hoffmann&tag=burrandbrew20-20"
+  },
+  "stagg-ekg-pro": {
+    "name": "a Fellow Stagg EKG Pro kettle on Amazon",
+    "url": "https://www.amazon.com/s?k=Fellow+Stagg+EKG+Pro+kettle&tag=burrandbrew20-20"
+  },
+  "acaia-lunar": {
+    "name": "an Acaia Lunar espresso scale on Amazon",
+    "url": "https://www.amazon.com/s?k=Acaia+Lunar+espresso+scale&tag=burrandbrew20-20"
+  },
+  "pullman-bigstep": {
+    "name": "a Pullman BigStep tamper on Amazon",
+    "url": "https://www.amazon.com/s?k=Pullman+BigStep+tamper&tag=burrandbrew20-20"
+  },
+  "fellow-ode": {
+    "name": "a Fellow Ode brew grinder on Amazon",
+    "url": "https://www.amazon.com/s?k=Fellow+Ode+brew+grinder&tag=burrandbrew20-20"
+  },
+  "yama-cold-brew-tower": {
+    "name": "a Yama cold brew tower on Amazon",
+    "url": "https://www.amazon.com/s?k=Yama+cold+brew+tower&tag=burrandbrew20-20"
+  },
+  "hasami-porcelain": {
+    "name": "Hasami Porcelain coffee pieces on Amazon",
+    "url": "https://www.amazon.com/s?k=Hasami+Porcelain+dripper+coffee+pot&tag=burrandbrew20-20"
+  },
+  "coffee-gift-subscription": {
+    "name": "a specialty coffee gift subscription on Amazon",
+    "url": "https://www.amazon.com/s?k=coffee+gift+subscription&tag=burrandbrew20-20"
+  },
+  "weber-eg1": {
+    "name": "a Weber Workshops EG-1 grinder on Amazon",
+    "url": "https://www.amazon.com/s?k=Weber+Workshops+EG-1+grinder&tag=burrandbrew20-20"
+  },
+  "mac-mini": {
+    "name": "a Mac mini on Amazon",
+    "url": "https://www.amazon.com/s?k=Apple+Mac+mini+M4&tag=burrandbrew20-20"
+  },
+  "usb-microphone": {
+    "name": "a USB microphone on Amazon",
+    "url": "https://www.amazon.com/s?k=USB+microphone+for+recording&tag=burrandbrew20-20"
+  },
+  "mic-boom-arm": {
+    "name": "a microphone boom arm on Amazon",
+    "url": "https://www.amazon.com/s?k=microphone+boom+arm+stand&tag=burrandbrew20-20"
+  },
+  // AUDIBLE BOUNTY ($20 per new trial — the best single-action payout):
+  // the exact bounty link must be pasted from Associates Central
+  // (Product Linking -> Bounties -> Audible) by Jason — it cannot be
+  // generated here. Until then url stays null and the token is dropped
+  // silently, so the gear page reads fine with or without it.
+  "audible-trial": {
+    "name": "an Audible free trial on Amazon",
+    "url": null
+  }
+}

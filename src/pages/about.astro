@@ -1,0 +1,58 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import StructuredData from '~/components/common/StructuredData.astro';
+import { SITE } from 'astrowind:config';
+
+const metadata = {
+  title: 'About — How Burr & Brew Writes',
+  description:
+    'Burr & Brew is an independent home-coffee publication: technique-first guides, honest gear education, no sponsored rankings, no fake reviews.',
+};
+
+const site = (SITE?.site || 'https://example.com').replace(/\/$/, '');
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  name: 'About Burr & Brew',
+  url: `${site}/about/`,
+};
+---
+
+<Layout metadata={metadata}>
+  <Fragment slot="announcement" />
+  <StructuredData slot="head" schema={schema} />
+  <section class="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
+    <p class="text-sm font-semibold uppercase tracking-widest text-primary">About</p>
+    <h1 class="font-headline mt-2 text-4xl font-bold md:text-5xl">Technique first. Gear second.</h1>
+    <div class="prose-editorial prose prose-lg mt-8 dark:prose-invert">
+      <p>
+        <strong>Burr &amp; Brew</strong> is an independent publication about home coffee and espresso. We write
+        buying guides, brewing how-tos, and method comparisons for people who want a better cup without
+        the marketing noise.
+      </p>
+      <p>
+        This is a new site, and we're upfront about that: every article is researched from established
+        brewing science and widely documented technique — ratios, extraction principles, and gear
+        categories that any experienced home brewer would recognize. As the site grows, that foundation
+        is what gets built on.
+      </p>
+      <h2>How we write</h2>
+      <ul>
+        <li><strong>No fake reviews.</strong> You'll never find a star rating or a "we tested 12 grinders" verdict here unless genuine hands-on testing happened. Our buying guides teach you <em>what to look for</em> instead of pretending we crowned a winner.</li>
+        <li><strong>No invented prices.</strong> Gear prices shift constantly; we'd rather teach you how to judge value than print numbers that go stale.</li>
+        <li><strong>No sponsored rankings.</strong> If this site ever earns affiliate commissions, every affected page will say so — see the <a href="/affiliate-disclosure/">affiliate disclosure</a>.</li>
+        <li><strong>Technique before gear.</strong> Most bad coffee is a technique problem, not an equipment problem. We say that plainly, even when it means telling you not to buy something.</li>
+      </ul>
+      <h2>What you'll find here</h2>
+      <ul>
+        <li><strong>Guides</strong> — step-by-step brewing how-tos and what-to-look-for buying education.</li>
+        <li><strong>Comparisons</strong> — honest method-vs-method breakdowns (pour-over vs French press, burr vs blade) with no fake winners.</li>
+      </ul>
+      <h2>Found an error?</h2>
+      <p>
+        Coffee people care about the details, and so do we. If a ratio looks off or a technique description
+        misses something, we want to know — corrections make the site better for everyone.
+      </p>
+    </div>
+  </section>
+</Layout>

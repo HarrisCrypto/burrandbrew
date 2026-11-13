@@ -1,0 +1,229 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '~/layouts/PageLayout.astro';
+import StructuredData from '~/components/common/StructuredData.astro';
+import ArticleCard from '~/components/ArticleCard.astro';
+import { SITE, I18N } from 'astrowind:config';
+
+const metadata = {
+  title: 'Burr & Brew — Honest Home Coffee & Espresso Guides',
+  ignoreTitleTemplate: true,
+  description:
+    'Learn to brew better coffee at home: espresso fundamentals, pour-over technique, grinder buying guides, and honest gear comparisons. No sponsored rankings.',
+};
+
+const site = (SITE?.site || 'https://example.com').replace(/\/$/, '');
+const organizationId = `${site}/#organization`;
+
+// Structured data built only from this site's own config — Organization with an
+// (intentionally empty for now) sameAs, plus WebSite. No invented claims.
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': `${site}/#website`,
+    name: 'Burr & Brew',
+    url: site,
+    inLanguage: I18N?.language || 'en',
+    publisher: { '@id': organizationId },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': organizationId,
+    name: 'Burr & Brew',
+    url: site,
+    description:
+      'Independent buying guides, brewing how-tos, and gear comparisons for home coffee and espresso.',
+    sameAs: [] as string[],
+  },
+];
+
+const latest = (
+  await Promise.all(
+    (['reviews', 'comparisons', 'guides'] as const).map((c) =>
+      getCollection(c, ({ data }) => !data.draft)
+    )
+  )
+)
+  .flat()
+  .sort((a, b) => +new Date(b.data.date) - +new Date(a.data.date))
+  .slice(0, 6);
+
+const hrefFor = (e: (typeof latest)[number]) => {
+  const slug = e.id.replace(/\.mdx?$/, '');
+  if (e.collection === 'reviews') return `/reviews/${slug}/`;
+  if (e.collection === 'comparisons') return `/comparisons/${slug}/`;
+  return `/guides/${slug}/`;
+};
+const labelFor = (e: (typeof latest)[number]) =>
+  e.collection === 'reviews'
+    ? 'Review'
+    : e.collection === 'comparisons'
+      ? 'Comparison'
+      : 'Guide';
+
+const startHere = [
+  {
+    name: 'Espresso at home',
+    href: '/guides/espresso-basics-home/',
+    blurb: 'Dose, yield, time — the fundamentals before you buy anything.',
+  },
+  {
+    name: 'Pour-over technique',
+    href: '/guides/pour-over-brewing-guide/',
+    blurb: 'The bloom, the pours, the ratios. A complete walkthrough.',
+  },
+  {
+    name: 'Grinders, explained',
+    href: '/guides/espresso-grinder-buying-guide/',
+    blurb: 'Why the grinder matters more than the machine.',
+  },
+  {
+    name: 'Milk, frothed right',
+    href: '/guides/how-to-froth-milk-at-home/',
+    blurb: 'Microfoam without a café steam wand.',
+  },
+];
+---
+
+<Layout metadata={metadata}>
+  <Fragment slot="announcement" />
+  <StructuredData slot="head" schema={structuredData} />
+
+  <!-- Hero: editorial hero with illustrative brew-recipe card -->
+  <section class="hero-wash relative overflow-hidden">
+    <div class="mx-auto max-w-6xl px-4 pb-16 pt-14 sm:px-6 md:pb-24 md:pt-20 lg:px-8">
+      <div class="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+        <div>
+          <p class="eyebrow">Independent guides · No sponsored rankings</p>
+          <h1 class="text-display mt-5 max-w-xl">
+            Better coffee starts at home.
+          </h1>
+          <p class="mt-6 max-w-xl text-lg leading-relaxed text-muted">
+            <strong class="font-semibold text-default">Great home coffee is a skill, not a shopping list.</strong> Burr
+            &amp; Brew teaches the fundamentals — grind, ratio, technique — then shows you what gear is actually worth
+            it, method by method. No fake reviews, no paid placements, no "best of" lists we didn't earn.
+          </p>
+          <div class="mt-9 flex flex-wrap gap-4">
+            <a href="/guides/" class="btn-premium">
+              Start with the guides
+            </a>
+            <a href="/comparisons/" class="btn-premium-ghost">
+              Compare brew methods
+            </a>
+          </div>
+        </div>
+
+        <!-- Illustrative brew-recipe card (stylized illustration, not a product) -->
+        <div class="relative mx-auto w-full max-w-md lg:max-w-none" aria-hidden="true">
+          <div class="absolute -inset-4 rounded-[1.75rem] bg-primary/10 blur-2xl dark:bg-primary/15"></div>
+          <div class="card relative bg-white p-6 shadow-2xl dark:bg-stone-900 sm:p-7">
+            <div class="flex items-center gap-3 border-b border-stone-100 pb-4 dark:border-stone-800">
+              <svg class="h-5 w-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 8h1a3 3 0 0 1 0 6h-1" />
+                <path d="M3 8h14v6a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z" />
+                <path d="M7 2v2M11 2v2M15 2v2" />
+              </svg>
+              <p class="text-sm font-semibold">Today's brew · Pour-over</p>
+              <p class="ml-auto font-mono text-xs text-muted">1:16</p>
+            </div>
+            <div class="mt-5 space-y-3 text-[0.92rem] leading-relaxed">
+              <div class="flex items-center justify-between rounded-xl bg-stone-100 px-4 py-2.5 dark:bg-stone-800">
+                <span class="font-medium">Dose</span>
+                <span class="font-mono text-sm">22 g, medium-fine</span>
+              </div>
+              <div class="flex items-center justify-between rounded-xl bg-stone-100 px-4 py-2.5 dark:bg-stone-800">
+                <span class="font-medium">Water</span>
+                <span class="font-mono text-sm">352 g · 94°C</span>
+              </div>
+              <div class="flex items-center justify-between rounded-xl bg-stone-100 px-4 py-2.5 dark:bg-stone-800">
+                <span class="font-medium">Bloom</span>
+                <span class="font-mono text-sm">45 g · 0:45</span>
+              </div>
+              <div class="flex items-center justify-between rounded-xl bg-stone-100 px-4 py-2.5 dark:bg-stone-800">
+                <span class="font-medium">Total time</span>
+                <span class="font-mono text-sm">~3:00</span>
+              </div>
+            </div>
+            <div class="mt-5 flex items-center gap-2.5 rounded-xl bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-800 dark:bg-emerald-950 dark:text-emerald-200">
+              <svg class="h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+              Sweet, balanced cup · no bitterness
+            </div>
+          </div>
+          <div class="card absolute -bottom-6 -left-4 hidden bg-white px-5 py-4 shadow-xl dark:bg-stone-900 sm:block lg:-left-10">
+            <p class="text-2xl font-bold tracking-tight text-primary">1:16</p>
+            <p class="mt-0.5 text-xs font-medium text-muted">The ratio that fixes most cups</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest -->
+  <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-20 lg:px-8">
+    <div class="flex items-end justify-between gap-6">
+      <div>
+        <p class="eyebrow">Fresh from the brew bar</p>
+        <h2 class="font-headline mt-3 text-3xl font-bold tracking-[-0.015em] md:text-4xl">Latest guides</h2>
+      </div>
+      <a href="/guides/" class="shrink-0 text-sm font-semibold text-primary hover:underline">All articles →</a>
+    </div>
+    <div class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {latest.map((entry) => (
+        <ArticleCard
+          href={hrefFor(entry)}
+          kicker={labelFor(entry)}
+          title={entry.data.title}
+          description={entry.data.description}
+          date={entry.data.date}
+        />
+      ))}
+    </div>
+  </section>
+
+  <!-- Start here -->
+  <section class="section-band bg-white py-16 dark:bg-stone-900 md:py-20">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <p class="eyebrow">Start here</p>
+      <h2 class="font-headline mt-3 text-3xl font-bold tracking-[-0.015em] md:text-4xl">Pick your rabbit hole</h2>
+      <p class="mt-3 max-w-2xl text-muted">
+        Four doors into better home coffee. Each one starts with technique — the gear comes second.
+      </p>
+      <div class="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+        {startHere.map((v) => (
+          <a
+            href={v.href}
+            class="card-lift group bg-white p-6 dark:bg-stone-900"
+          >
+            <h3 class="font-headline text-xl font-bold tracking-[-0.01em] transition-colors group-hover:text-primary">{v.name}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-muted">{v.blurb}</p>
+            <p class="mt-5 border-t border-stone-100 pt-4 text-[0.7rem] font-bold uppercase tracking-[0.14em] text-primary dark:border-stone-800">
+              Read the guide →
+            </p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Why section -->
+  <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24 lg:px-8">
+    <div class="panel-ink relative overflow-hidden rounded-3xl px-8 py-14 text-center sm:px-12 md:py-16">
+      <p class="eyebrow justify-center">Why Burr &amp; Brew</p>
+      <h2 class="font-headline mx-auto mt-4 max-w-xl text-3xl font-bold tracking-[-0.015em] text-stone-50 md:text-4xl">Technique first. Gear second.</h2>
+      <p class="mx-auto mt-4 max-w-xl leading-relaxed text-stone-300">
+        Most coffee content is a shopping list in disguise. We do it backwards: learn what actually changes the cup,
+        then buy once. Every guide explains the <em>why</em> before the <em>what</em> — and nothing here is for sale.
+      </p>
+      <a
+        href="/about/"
+        class="btn-premium mt-8"
+      >
+        How we write
+      </a>
+    </div>
+  </section>
+</Layout>

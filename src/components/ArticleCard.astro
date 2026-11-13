@@ -1,0 +1,39 @@
+---
+// Premium article card: hairline border, hover lift, editorial typography.
+// Never shows ratings or scores — honesty gate.
+export interface Props {
+  href: string;
+  kicker: string;
+  title: string;
+  description: string;
+  date: Date;
+  badge?: string;
+}
+
+const { href, kicker, title, description, date, badge } = Astro.props;
+const fmt = new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<a
+  href={href}
+  class="card-lift group flex flex-col bg-white p-6 dark:bg-stone-900 sm:p-7"
+>
+  <div class="flex items-center justify-between gap-3">
+    <p class="eyebrow">{kicker}</p>
+    {badge && (
+      <span class="shrink-0 rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-semibold text-amber-800 dark:bg-amber-900 dark:text-amber-200">
+        {badge}
+      </span>
+    )}
+  </div>
+  <h3 class="font-headline mt-3 text-[1.35rem] font-bold leading-snug tracking-[-0.01em] transition-colors duration-200 group-hover:text-primary">
+    {title}
+  </h3>
+  <p class="mt-2.5 flex-1 text-[0.95rem] leading-relaxed text-muted">{description}</p>
+  <div class="mt-5 flex items-center justify-between border-t border-stone-100 pt-4 dark:border-stone-800">
+    <p class="text-xs font-medium text-muted">{fmt}</p>
+    <span class="text-sm font-semibold text-primary opacity-0 transition-all duration-200 group-hover:translate-x-1 group-hover:opacity-100">
+      Read →
+    </span>
+  </div>
+</a>
